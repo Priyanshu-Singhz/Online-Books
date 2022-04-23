@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var tabIndex = 0;
+  var bottomIndex = 0;
   final pageController = PageController();
   @override
   Widget build(BuildContext context) {
@@ -61,5 +62,50 @@ class _HomePageState extends State<HomePage> {
         ]);
   }
 
-  _buildBottomNavigationBar() {}
+  _buildBottomNavigationBar() {
+    final bottoms = [
+      Icons.home_outlined,
+      Icons.analytics_outlined,
+      Icons.keyboard_voice_outlined,
+      Icons.bookmark_border_outlined,
+      Icons.person_outlined,
+    ];
+    final width = MediaQuery.of(context).size.width;
+    return SizedBox(
+      width: width,
+      height: 56,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (_, index) => GestureDetector(
+          onTap: () => setState(() {
+            bottomIndex = index;
+          }),
+          child: Container(
+            width: (width - 40) / 5,
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            decoration: bottomIndex == index
+                ? const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 3,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
+                  )
+                : null,
+            child: Icon(
+              bottoms[index],
+              size: 30,
+              color:
+                  bottomIndex == index ? Colors.deepPurple : Colors.grey[400],
+            ),
+          ),
+        ),
+        separatorBuilder: (_, index) => const SizedBox(
+          width: 10,
+        ),
+        itemCount: bottoms.length,
+      ),
+    );
+  }
 }
