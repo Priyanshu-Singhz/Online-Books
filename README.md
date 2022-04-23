@@ -2,6 +2,8 @@
 
 A new Flutter project , basically the fronend part !!
 
+![Screenshots](assets/Screeenshot.jpg)
+
 ## Made by priyanshu
 
 Inspiration :- Dribble .
